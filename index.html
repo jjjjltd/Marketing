@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifeshield - Attacking Invisible Taxes on Modern Life</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 2rem;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.95;
+        }
+
+        /* Tabs */
+        .tabs {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 2rem;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6b7280;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab-button:hover {
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Content Sections */
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+        }
+
+        .section h3 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 1rem;
+            color: #374151;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #4b5563;
+        }
+
+        .section ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .section li {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            color: #4b5563;
+        }
+
+        /* Shield App Cards */
+        .app-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .app-card.blocked {
+            border: 2px solid #f59e0b;
+            background: #fffbeb;
+        }
+
+        .app-info h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .app-info .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .status.available {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status.coming-soon {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status.blocked {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .app-info ul {
+            margin: 1rem 0;
+        }
+
+        .app-info li {
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button.disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .cta-button.disabled:hover {
+            transform: none;
+        }
+
+        .video-preview {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .video-placeholder {
+            background: #e5e7eb;
+            border: 2px dashed #9ca3af;
+            border-radius: 8px;
+            padding: 3rem 1rem;
+            color: #6b7280;
+        }
+
+        .video-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .video-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Blog Posts */
+        .blog-posts {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-post h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-post .date {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-post p {
+            color: #4b5563;
+        }
+
+        /* Contact Section */
+        .contact-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info strong {
+            color: #667eea;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item h4 {
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">🛡️ Lifeshield</div>
+            <nav class="nav">
+                <a href="#" onclick="showTab('home'); return false;">Home</a>
+                <a href="#" onclick="showTab('apps'); return false;">Shield Apps</a>
+                <a href="#" onclick="showTab('blog'); return false;">Blog</a>
+                <a href="#" onclick="showTab('contact'); return false;">Contact Us</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Lifeshield</h1>
+            <p><strong>Attacking invisible taxes on modern life</strong></p>
+            <p>Unwanted assaults on wellbeing</p>
+        </div>
+    </div>
+
+    <!-- Tabs Section -->
+    <div class="tabs">
+        <div class="tab-buttons">
+            <button class="tab-button active" onclick="showTab('home')">Home</button>
+            <button class="tab-button" onclick="showTab('apps')">Shield Apps</button>
+            <button class="tab-button" onclick="showTab('blog')">Blog</button>
+            <button class="tab-button" onclick="showTab('contact')">Contact Us</button>
+        </div>
+
+        <!-- Home Tab -->
+        <div id="home" class="tab-content active">
+            <div class="section">
+                <h2>Our Mission</h2>
+                <p><strong>We attack invisible taxes on modern life - unwanted assaults on wellbeing.</strong></p>
+                <p>Modern life bombards you with small stresses:</p>
+                <ul>
+                    <li>Inbox chaos → decision fatigue</li>
+                    <li>Forgotten subscriptions → background anxiety</li>
+                    <li>Hidden costs → financial stress</li>
+                    <li>Lost records → proof anxiety</li>
+                </ul>
+                <p><strong>Lifeshield protects you from these invisible taxes.</strong></p>
+                <p>Not by making you more productive. By giving you clarity so you stop second-guessing yourself.</p>
+            </div>
+
+            <div class="section">
+                <h2>What We Believe (HERD Principles)</h2>
+                <ul>
+                    <li><strong>Honour:</strong> Deliver value first, always. No charge without benefit.</li>
+                    <li><strong>Etiquette:</strong> Treat people as we want to be treated. Every person gets a response.
+                    </li>
+                    <li><strong>Respect:</strong> Listen more than we talk. Your feedback shapes what we build.</li>
+                    <li><strong>Discipline:</strong> Ship fast. Iterate faster. Stay focused on solving real problems.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Valuing Your Privacy</h2>
+                <p><strong>You value your privacy.</strong></p>
+                <p><strong>We value it so highly, we're not going to take it from you in the first place.</strong></p>
+                <p>Your emails? Analyzed on your device. Never transmitted.</p>
+                <p>Your bank statements? Processed locally. Never stored.</p>
+                <p>Your training records? You control them. Forever.</p>
+                <p><strong>Privacy isn't a promise to protect what we take. Privacy is not taking it at all.</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Shield Apps Tab -->
+        <div id="apps" class="tab-content">
+            <!-- Email Scraper -->
+            <div class="app-card">
+                <div class="app-info">
+                    <h2>📧 Email Scraper</h2>
+                    <span class="status available">Get It Now</span>
+                    <p>Privacy-first inbox analysis. Your data never leaves your device.</p>
+                    <ul>
+                        <li><strong>Unsubscribe:</strong> Automate unsubscribe to unwanted senders</li>
+                        <li><strong>Create Folders:</strong> Auto-file emails with smart rules</li>
+                        <li><strong>Manage History:</strong> Keep last N emails, delete old automatically</li>
+                        <li><strong>Delete All:</strong> Bulk cleanup with optional block rules</li>
+                        <li><strong>Archive:</strong> Move large emails to save storage costs</li>
+                    </ul>
+                    <a href="#" class="cta-button">Download Now</a>
+                </div>
+                <div class="video-preview">
+                    <div class="video-placeholder">
+                        <p>📹 Introduction Video</p>
+                        <p>Coming Soon</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subscription Scraper -->
+            <div class="app-card">
+                <div class="app-info">
+                    <h2>💳 Subscription Scraper</h2>
+                    <span class="status available">Get It Now</span>
+                    <p>Find forgotten subscriptions. Spot hidden recurring payments.</p>
+                    <ul>
+                        <li><strong>Pattern Analysis:</strong> Fuzzy matching groups merchant variations (Premium)</li>
+                        <li><strong>PDF Support:</strong> Works with bank statements and credit card bills</li>
+                        <li><strong>Multi-file Upload:</strong> Analyze multiple periods at once</li>
+                        <li><strong>Privacy-First:</strong> All analysis happens locally on your device</li>
+                    </ul>
+                    <a href="#" class="cta-button">Download Now</a>
+                </div>
+                <div class="video-preview">
+                    <div class="video-placeholder">
+                        <p>📹 Walkthrough Video</p>
+                        <p>Coming Soon</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal Training Record -->
+            <div class="app-card">
+                <div class="app-info">
+                    <h2>📜 Personal Training Record</h2>
+                    <span class="status coming-soon">Coming Soon</span>
+                    <p>Your training records. Not theirs. Forever.</p>
+                    <ul>
+                        <li><strong>Permanent Storage:</strong> Certificates don't expire when providers say so</li>
+                        <li><strong>Lifetime Portfolio:</strong> Build proof of all your achievements</li>
+                        <li><strong>Provider-Independent:</strong> Survives certificate expiry and deletion</li>
+                        <li><strong>Shareable:</strong> Control who sees your training history</li>
+                    </ul>
+                    <a href="#" class="cta-button disabled">Coming Soon</a>
+                </div>
+                <div class="video-preview">
+                    <div class="video-placeholder">
+                        <p>📹 Demo Video</p>
+                        <p>In Development</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blocked Number Blocker -->
+            <div class="app-card blocked">
+                <div class="app-info">
+                    <h2>⚠️ Blocked Number Blocker</h2>
+                    <span class="status blocked">The App They Won't Let Us Build</span>
+                    <p>We wanted to build this. Platform vendors said no.</p>
+                    <ul>
+                        <li><strong>What it would do:</strong> Aggregate blocked numbers across users</li>
+                        <li><strong>Why you need it:</strong> Community defense against phone spam</li>
+                        <li><strong>Why we can't:</strong> Apple won't give API access, Android requires manual
+                            downloads</li>
+                        <li><strong>What this means:</strong> Platforms prevent collective defense. That's isolation
+                            dressed up as privacy.</li>
+                    </ul>
+                    <a href="#" class="cta-button disabled">Cannot Build</a>
+                    <a href="#" onclick="showTab('blog'); return false;" class="video-link">→ Read more on blog</a>
+                </div>
+                <div class="video-preview">
+                    <div class="video-placeholder">
+                        <p>⛔</p>
+                        <p>Platform Restrictions</p>
+                        <p>Explained on blog</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Tab -->
+        <div id="blog" class="tab-content">
+            <div class="section">
+                <h2>Blog</h2>
+                <p>Building in public. Thinking transparently.</p>
+
+                <div class="blog-posts">
+                    <!-- Published Post -->
+                    <div class="blog-post">
+                        <h3>We Almost Did The Dumb Marketing Thing</h3>
+                        <div class="date">Published: 12 Dec 2025 | Status: ✅ Live</div>
+                        <p>We were going to launch with "First 1,000 get free access forever!" It would've created buzz.
+                            FOMO. Urgency. But we slept on it and realized it creates winners and losers. It's a
+                            lottery. That contradicts everything we believe about meritocracy. So we're doing something
+                            different...</p>
+                        <a href="#" class="video-link">Read full post →</a>
+                    </div>
+
+                    <!-- Upcoming Post -->
+                    <div class="blog-post">
+                        <h3>The Product We Can't Build (And Why That Should Make You Angry)</h3>
+                        <div class="date">Planned: 18 Dec 2025 | Status: 🔒 Upcoming</div>
+                        <p>We wanted to build Blocked Number Analysis. Aggregate spam callers across users. Create a
+                            league table. Push for regulatory action. Community defense. But Apple won't give us API
+                            access. Android requires manual downloads. This isn't about privacy - it's about preventing
+                            you from organizing. We'll explain why platforms block collective defense tools...</p>
+                        <a href="#" class="video-link">Preview available →</a>
+                    </div>
+
+                    <!-- Future/Draft Post -->
+                    <div class="blog-post">
+                        <h3>Valuing Your Privacy (For Real This Time)</h3>
+                        <div class="date">Planned: Jan 2026 | Status: 📝 Draft</div>
+                        <p>Most companies say "we value your privacy" and then take your data anyway, promising to
+                            protect it. We value your privacy so highly, we're not going to take it from you in the
+                            first place. Your emails analyzed on your device. Your bank statements processed locally.
+                            Privacy isn't a promise to protect what we take. Privacy is not taking it at all. This post
+                            will explore what that actually means in practice...</p>
+                        <a href="#" class="video-link">Draft in progress →</a>
+                    </div>
+
+                    <!-- Template for adding more posts
+                    <div class="blog-post">
+                        <h3>Post Title</h3>
+                        <div class="date">Published/Planned: Date | Status: ✅/🔒/📝</div>
+                        <p>Post excerpt or summary...</p>
+                        <a href="#" class="video-link">Read more →</a>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Us Tab -->
+        <div id="contact" class="tab-content">
+            <div class="contact-card">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <p><strong>[Your Name], CEO</strong><br>
+                        JJJJ Ltd<br>
+                        [Street Address]<br>
+                        [City, Postcode]<br>
+                        United Kingdom</p>
+
+                    <p><strong>Phone:</strong> [Your Number]<br>
+                        <strong>Email:</strong> [Your Email]
+                    </p>
+
+                    <p><strong>We respond to everyone. Personally.</strong></p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <h4>How does voluntary payment work?</h4>
+                    <p>Use the app. See the value. Then pay what you think it's worth (or don't). We trust you to be
+                        fair.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Is my data safe?</h4>
+                    <p>We don't take your data in the first place. Email and subscription analysis happens on your
+                        device. Nothing is transmitted or stored on our servers.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Which platforms do you support?</h4>
+                    <p>Email Scraper: Gmail and Outlook. Subscription Scraper: Any bank or credit card statement (Excel,
+                        CSV, or PDF). More platforms coming soon.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Why can't you build Blocked Number Blocker?</h4>
+                    <p>Apple doesn't provide API access to blocked numbers. Android requires manual downloads. Platform
+                        vendors prevent the collective defense tools that would actually help users. Read more on our
+                        blog.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>What are HERD principles?</h4>
+                    <p>Honour, Etiquette, Respect, Discipline. These guide how we build products and treat people. See
+                        the Home tab for full details.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Follow Us</h2>
+                <div class="social-links">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter/X</a>
+                    <a href="#">GitHub</a>
+                    <!-- Add more social links as needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><strong>JJJJ Ltd</strong> - Lifeshield Suite</p>
+        <p>Attacking invisible taxes on modern life</p>
+        <p>Money should serve people. Not the other way around.</p>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Find and activate the clicked button
+            const clickedButton = Array.from(buttons).find(btn =>
+                btn.textContent.toLowerCase().includes(tabName.toLowerCase()) ||
+                (tabName === 'apps' && btn.textContent.includes('Shield'))
+            );
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+        }
+    </script>
+</body>
+
+</html>
