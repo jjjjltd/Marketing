@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lifeshield - Attacking Invisible Taxes on Modern Life</title>
+    
+    <!-- Lifeshield Registration System -->
+    <link rel="stylesheet" href="http://localhost:5000/static/registration-modal.css">
+    
     <style>
         * {
             margin: 0;
@@ -473,8 +477,9 @@
                         <li><strong>Delete All:</strong> Bulk cleanup with optional block rules</li>
                         <li><strong>Archive:</strong> Move large emails to save storage costs</li>
                     </ul>
-                    <a href="https://github.com/jjjjltd/EMail_Scraper/releases/download/0.0.1/EmailScraper.exe"
-                        class="cta-button" download>Download Now</a>
+                    <a href="#" 
+                        onclick="LifeshieldRegistration.initiateRegistration('email_scraper', 'https://github.com/jjjjltd/EMail_Scraper/releases/download/0.0.1/EmailScraper.exe'); return false;"
+                        class="cta-button">Download Now</a>
                 </div>
                 <div class="video-preview">
                     <!-- Loom video embed - replace URL when you have final video -->
@@ -826,6 +831,17 @@
                 clickedButton.classList.add('active');
             }
         }
+    </script>
+
+    <!-- Lifeshield Registration System -->
+    <script src="http://localhost:5000/static/registration-modal.js"></script>
+    <script>
+        // Configure registration system
+        LifeshieldRegistration.init({
+            enabled: false,  // Set to true to enable registration (false = stub mode for testing)
+            apiEndpoint: "http://localhost:5000/api/register",
+            mode: "free"
+        });
     </script>
 </body>
 
